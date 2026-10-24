@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portal de Aprovação ENEM</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<!-- ===== CABEÇALHO: logo, botão Entrar, cronômetro e menu de abas ===== -->
+<header>
+<div class="top"><div class="brand"><svg width="42" height="42" viewBox="0 0 48 48" aria-hidden="true"><rect width="48" height="48" rx="12" fill="#142D4E"/><path d="M24 11 5 20l19 9 19-9z" fill="#fff"/><path d="M13 25v7c0 3 5 6 11 6s11-3 11-6v-7l-11 5z" fill="#fff" opacity=".85"/><circle cx="38" cy="32" r="7" fill="#2563EB"/><path d="m34.5 32 2.5 2.5 4-5" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><div>Portal de Aprovação<small>ENEM</small></div></div><div style="display:flex;gap:6px"><button id="login" class="btn alt">Entrar</button><button id="pill">⏱ Foco</button></div></div>
+<nav id="nav"><button data-t="sobre" class="on"><span>🏠</span>Início</button><button data-t="comecar"><span>📖</span>Estudar</button><button data-t="red"><span>✍️</span>Redação</button><button data-t="sim"><span>📝</span>Simulado</button><button data-t="hist"><span>📊</span>Histórico</button></nav>
+</header>
+<main>
+<!-- ===== ABA: INÍCIO ===== -->
+<section id="sobre" class="on">
+<div class="card hero"><h1>Sua aprovação começa com um plano.</h1><p>Aqui você encontra o caminho: o que estudar, onde estudar, como montar uma redação nota alta e como testar seu nível. Tudo em português simples e feito para quem está no 3º ano.</p><button class="btn o" onclick="irPara('comecar')">Ver o que estudar</button> <button class="btn alt" onclick="irPara('red')">Aprender redação</button></div>
+<div class="card"><h2>Como usar o portal</h2>
+<div class="step"><b class="n">1</b><div><b>Estude</b><br><span class="mut">Na aba Estudar, escolha um tema e abra as aulas, apostilas e questões.</span></div></div>
+<div class="step"><b class="n">2</b><div><b>Treine</b><br><span class="mut">Faça simulados e, quando errar, leia a explicação para entender o motivo.</span></div></div>
+<div class="step"><b class="n">3</b><div><b>Escreva</b><br><span class="mut">Aprenda a estrutura da redação, escreva seu texto e teste uma correção com IA.</span></div></div>
+<div class="step"><b class="n">4</b><div><b>Acompanhe</b><br><span class="mut">Use o cronômetro de foco e veja seu histórico de estudo dia a dia.</span></div></div></div>
+<div class="card"><h2>O ENEM em números</h2><div class="grid">
+<div class="stat"><div class="big">2</div><div class="mut">dias de prova</div></div><div class="stat"><div class="big">180</div><div class="mut">questões objetivas</div></div><div class="stat"><div class="big">4</div><div class="mut">áreas do conhecimento</div></div><div class="stat"><div class="big">1000</div><div class="mut">pontos na redação</div></div></div>
+<p class="mut">Dia 1: Linguagens, Humanas e Redação. Dia 2: Natureza e Matemática. Confira sempre datas e regras no edital do INEP.</p></div>
+<div class="grid">
+<div class="card feat" onclick="irPara('comecar')"><div class="ic">📖</div><div><h3>Estudar</h3><p class="mut">24 temas com aulas, apostilas e questões.</p></div></div>
+<div class="card feat" onclick="irPara('red')"><div class="ic">✍️</div><div><h3>Redação</h3><p class="mut">Cartilha explicada, estrutura em cores e correção com IA.</p></div></div>
+<div class="card feat" onclick="irPara('sim')"><div class="ic">📝</div><div><h3>Simulados</h3><p class="mut">Rápido, médio e nível ENEM, com explicação dos erros.</p></div></div>
+<div class="card feat" onclick="irPara('hist')"><div class="ic">📊</div><div><h3>Histórico</h3><p class="mut">Horas de estudo e desempenho por dia.</p></div></div></div>
+<div class="card"><h2>Dicas de ouro</h2>
+<details open><summary>Analise provas anteriores e gabaritos</summary><p class="mut">Baixe as provas e os gabaritos oficiais do INEP e veja quais temas se repetem. Isso mostra onde estudar primeiro. <a target="_blank" rel="noopener" href="https://www.google.com/search?q=provas+e+gabaritos+enem+inep">Buscar provas e gabaritos do INEP</a></p></details>
+<details><summary>Faça provas antigas com tempo marcado</summary><p class="mut">Treinar o ritmo vale tanto quanto saber o conteúdo. Use o cronômetro de foco.</p></details>
+<details><summary>Revise os erros, não só os acertos</summary><p class="mut">Cada erro mostra um buraco de conteúdo ou de leitura. Anote e volte nele em 2 ou 3 dias.</p></details>
+<details><summary>Escreva uma redação por semana</summary><p class="mut">A redação é a parte mais treinável da prova. Escreva, corrija e reescreva.</p></details>
+<details><summary>Descanse antes da prova</summary><p class="mut">Sono e alimentação na semana final rendem mais do que mais uma noite em claro.</p></details></div>
+<p class="mut" id="who"></p>
+</section>
+
+<!-- ===== ABA: ESTUDAR (cards criados por js/estudar.js) ===== -->
+<section id="comecar"><div id="temas"></div></section>
+
+<!-- ===== ABA: REDAÇÃO (3 sub-abas) ===== -->
+<section id="red">
+<div class="sub" id="rsub"><button data-r="r1" class="on">📋 Cartilha</button><button data-r="r2">🎨 Estrutura</button><button data-r="r3">✏️ Escrever e corrigir</button></div>
+<div id="r1" class="rp"><div class="card"><h2>As 5 competências (200 pontos cada)</h2><p class="mut">Total de 0 a 1000. Cada competência vai de 0 a 200.</p><div id="comps"></div></div>
+<div class="card"><h2>O que zera a redação</h2><p class="mut">Fuga total ao tema; não ser dissertativo-argumentativo; texto muito curto (até 7 linhas); cópia dos textos de apoio; partes desconectadas do tema; impropérios, desenhos ou identificação no texto. Confira a Cartilha do Participante mais recente no site do INEP.</p></div></div>
+<div id="r2" class="rp" style="display:none"><div class="card"><h2>Estrutura em cores</h2><p class="mut">Toque no bloco. Você verá uma redação simulada com cada função destacada e, embaixo, o molde de cada frase. Estrutura baseada no Modelo Lacunar (Método Profinho).</p><div class="sub" id="blocos"></div></div><div id="bloco"></div></div>
+<div id="r3" class="rp" style="display:none"><div class="card"><h2>Escreva e receba uma correção</h2>
+<p><input id="tema" placeholder="Tema da redação" style="width:100%;margin-bottom:8px"></p>
+<textarea id="txt" placeholder="Escreva sua redação aqui..."></textarea>
+<p class="mut" id="cnt">0 palavras</p>
+<button class="btn o" id="corr">🤖 Corrigir com IA</button>
+<div class="warn">⚠️ A correção por IA <b>não é 100% confiável</b> e não substitui um corretor humano. Use apenas para testar e orientar seus estudos.</div>
+<div id="res"></div></div></div>
+</section>
+
+<!-- ===== ABA: SIMULADO (criado por js/simulado.js) ===== -->
+<section id="sim"><div class="card" id="simbox"></div></section>
+<!-- ===== ABA: HISTÓRICO (criado por js/historico.js) ===== -->
+<section id="hist"><div class="card"><h2>Histórico</h2><div id="hbox"></div></div></section>
+</main>
+
+<!-- ===== JANELA DE LOGIN / CADASTRO (js/conta.js) ===== -->
+<dialog id="adlg"><div class="box" id="abox">
+<h3 style="margin:0">Portal de Aprovação</h3>
+<div id="fform">
+<div class="tabs" id="tabs" data-m="login"><button id="tl" class="on" type="button">Entrar</button><button id="tr" type="button">Criar conta</button></div>
+<div class="aviso" id="aviso"></div>
+<div class="fld" id="fnome"><label>Seu nome</label><input id="an" placeholder="Como quer ser chamado" autocomplete="given-name"></div>
+<div class="fld"><label>E-mail</label><input id="ae" type="email" placeholder="voce@email.com" autocomplete="email"></div>
+<div class="fld pw"><label>Senha</label><input id="as" type="password" placeholder="Mínimo 8 caracteres"><button id="eye" type="button" title="Mostrar senha">👁</button></div>
+<button class="btn o" id="asub" style="width:100%;margin-top:6px">Entrar</button></div>
+<div id="fconta" style="display:none"><p>Olá, <b id="cnome"></b>!</p><p class="mut" id="cmail"></p><button class="btn" id="asair">Sair da conta</button></div>
+<button class="btn alt" id="afech" style="width:100%;margin-top:10px">Fechar</button>
+</div></dialog>
+<!-- ===== JANELA DO CRONÔMETRO (js/timer.js) ===== -->
+<dialog id="dlg"><h3>Cronômetro de foco</h3><p class="mut">Quanto tempo quer estudar?</p>
+<div style="display:flex;gap:6px;flex-wrap:wrap"><button class="btn alt" data-m="5">5 min</button><button class="btn alt" data-m="25">25 min</button><button class="btn alt" data-m="50">50 min</button><button class="btn alt" data-m="60">1 h</button></div>
+<p><input type="number" id="cm" min="1" max="600" placeholder="Outro (min)" style="width:130px"></p>
+<div style="display:flex;gap:6px"><button class="btn o" id="go">Iniciar</button><button class="btn alt" id="stop">Parar</button><button class="btn alt" id="close">Fechar</button></div></dialog>
+
+
+<!-- ===== SCRIPTS: a ordem importa! dados e util primeiro, main por último ===== -->
+<script src="js/dados.js"></script>
+<script src="js/util.js"></script>
+<script src="js/conta.js"></script>
+<script src="js/estudar.js"></script>
+<script src="js/redacao.js"></script>
+<script src="js/simulado.js"></script>
+<script src="js/historico.js"></script>
+<script src="js/timer.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

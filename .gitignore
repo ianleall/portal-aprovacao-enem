@@ -1,0 +1,10 @@
+# Pacotes baixados (o npm install recria esta pasta)
+node_modules/
+
+# Banco de dados com e-mails e senhas dos alunos: NUNCA vai para o GitHub
+enem.db
+enem.db-journal
+
+# Segredos e arquivos do sistema
+.env
+.DS_Store
